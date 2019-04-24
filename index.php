@@ -19,3 +19,7 @@ require "header.php";
 			?>
 	</div>
 </main>
+
+<?php
+require "footer.php";
+?>

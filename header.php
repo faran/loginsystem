@@ -8,9 +8,8 @@ session_start();
 <meta charset="utf-8">
 <meta charset="description" content="Meta description for search results">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<?php
-require "footer.php"
-?>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Welcome to Login system</title>
 </head>
 <body>
@@ -20,32 +19,25 @@ require "footer.php"
 			<ul class="nav navbar-nav">
 				<!-- <li><a href="index.php"><img src="./img/logo.jpg" alt="logo"></a></li> -->
 				<li><a href="index.php">Home</a></li>
-				<li><a href="login.php">Login</a></li>
+				<?php
+					if (!isset($_SESSION["userId"])) {
+						echo'<li><a href="login.php">Login</a></li>';
+					}
+				?>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Signup</a></li>
-				<div>
+				<!-- <li><a href="#">Signup</a></li> -->
+				
 					<?php
 					if (isset($_SESSION["userId"])) {
+						echo'<div>';
 						echo '<form action="includes/logout.inc.php" method="post">
 						<button type="submit" name="logout-submit">Logout</button>
-						</form>';
+						</form>
+						</div>';
 					
 					}
-					else{
-
-						// echo '<form action="includes/login.inc.php" method="post">
-						// <input type="text" name="mailuid" placeholder="User Name/E-mail...">
-						// <input type="password" name="pwd" placeholder="Password...">
-						// <button type="submit" name="login-submit">Login</button>
-						// </form>
-						// <a href="signup.php">Signup</a>';
-					}
 					?>
-				</div>
 			</ul>
 		</div>
 	</nav>
-</header>
-</body>
-</html>

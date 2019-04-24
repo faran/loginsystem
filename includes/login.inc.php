@@ -34,12 +34,23 @@ if(isset($_POST['login-submit'])){
 				exit();
 			}
 			else if($pwdCheck == true){
-				session_start();
-				$_SESSION["userId"] = $row['idUsers'];
-				$_SESSION["userUid"] = $row['uidUsers'];
+				$adminCheck = $row['admin'];
+				if (!$adminCheck){
+					session_start();
+					$_SESSION["userId"] = $row['idUsers'];
+					$_SESSION["userUid"] = $row['uidUsers'];
 
-				header("Location: ../landing.php?login=success");
-				exit();
+					header("Location: ../landing.php?login=success");
+					exit();
+				}
+				else{
+					session_start();
+					$_SESSION["userId"] = $row['idUsers'];
+					$_SESSION["userUid"] = $row['uidUsers'];
+					$_SESSION["admin"] = $row['admin'];
+					header("Location: ../admin.php?login=success");
+					exit();
+				}
 			}
 		}
 			else{
